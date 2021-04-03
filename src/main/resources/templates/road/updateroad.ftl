@@ -84,7 +84,7 @@
 							var data={'id':param,'longitude':e.point.lng,'latitude':e.point.lat};
 							ajaxwithoutjson("roadline_addRoadlineString.action",data,"post",function(){
 							     	points.push(new BMap.Point(e.point.lng,e.point.lat));
-							     	polyline.setPath(points);//polyline.setPath()后map进行了绘制故不用讲其放入map图层里面
+							     	polyline.setPath(points);//polyline.setPath()后map进行了绘制故不用将其放入map图层里面
 							     	//polyline=addPolylineMap(map,polyline.getPath,"blue");
 							});		
 					}
@@ -113,6 +113,7 @@
 						}
 					});
 					linestring+=")";
+					// TODO
 					ajaxwithoutjson("roadline_updatelotRoadlineString.action",{temp:linestring,id:${RequestParameters.id}},"post",function(){
 						showInfoMessage("保存成功");
 					});
