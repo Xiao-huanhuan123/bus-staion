@@ -82,19 +82,19 @@
 
 						} else {
 								$.messager.confirm('确认对话框', '您想要删除吗？', function(r){
-								/*if (r){
-									var ids=""; 
+								if (r){
+									var ids="";
 									for(var i=0;i<rows.length;i++){
 										ids+=rows[i].id+',';
 										}
 									ids=ids.substring(0,ids.lastIndexOf(','));
 									//发送ajax请求
-									$.post("product_deletebyIds.action",{17:id},function(result){
-										if(result=="true"){
+									ajax("stationtoline_deleteByIds.action",{id:ids},"post",function(data){
+										 if(data.success){
 											//让所有选择的选项不选中
 											$('#dg').datagrid('uncheckAll');
 											$('#dg').datagrid('reload');    // 重新载入当前页面数据
-										}else{
+                                         }else{
 											$.messager.show({
 											title : '消息提示',
 											msg : '删除失败请检查操作',
@@ -102,8 +102,9 @@
 											showType : 'slide'
 											});
 										}
-									},"text");
-									}*/
+									}
+                                );
+									}
 									});
 								}
 					}
