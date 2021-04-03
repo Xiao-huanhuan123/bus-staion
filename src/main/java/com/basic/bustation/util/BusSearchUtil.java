@@ -30,7 +30,7 @@ public class BusSearchUtil {
     }
 
     /**
-     *  公交搜索算法基于Dijsraz最短路径算法
+     *  公交搜索算法基于佛洛伊德最短路径算法
      * @param startStation  起始站点
      * @param endstartStation   结束站点
      * @param type     类型 0为 权值为时间  1为 权值为距离
