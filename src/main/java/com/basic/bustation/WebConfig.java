@@ -62,7 +62,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return registration;
     }
 
-/*    @Bean
+    @Bean
     public ServletListenerRegistrationBean InitDataListenre(){
         ServletListenerRegistrationBean registrationBean=new ServletListenerRegistrationBean();
         IniitDataListener iniitDataListener=new IniitDataListener();
@@ -70,17 +70,17 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registrationBean.setName("initDataListener");
         registrationBean.setEnabled(true);
         return registrationBean;
-    }*/
-
-    @Bean
-    public ServletListenerRegistrationBean InitDataListenre(){
-        ServletListenerRegistrationBean registrationBean=new ServletListenerRegistrationBean();
-        IniitDataListener iniitDataListener=new IniitDataListener();
-        registrationBean.setListener(iniitDataListener);
-//        registrationBean.setName("initDataListener");
-        registrationBean.setEnabled(true);
-        return registrationBean;
     }
+
+//    @Bean
+//    public ServletListenerRegistrationBean InitDataListenre(){
+//        ServletListenerRegistrationBean registrationBean=new ServletListenerRegistrationBean();
+//        IniitDataListener iniitDataListener=new IniitDataListener();
+//        registrationBean.setListener(iniitDataListener);
+////        registrationBean.setName("initDataListener");
+//        registrationBean.setEnabled(true);
+//        return registrationBean;
+//    }
 
 //    @Bean
 //    public ServletRegistrationBean dispatcherServletRegistration() {
