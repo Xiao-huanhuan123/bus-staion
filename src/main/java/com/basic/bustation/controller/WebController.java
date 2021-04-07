@@ -34,6 +34,16 @@ public class WebController extends  BaseController{
         return "index";
     }
 
+    @RequestMapping(value = "/temp",produces = "text/html;charset=UTF-8")
+    public String temp(){
+        return "temp";
+    }
+
+    @RequestMapping(value = "/login",produces = "text/html;charset=UTF-8")
+    public String goLogin(){
+        return "login";
+    }
+
     @RequestMapping("send_{var1}_{var2}.action")
     public String sendFunc(@PathVariable("var1") String var1,@PathVariable("var2") String var2){
         return var1+"/"+var2;

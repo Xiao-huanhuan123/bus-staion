@@ -36,4 +36,13 @@
       <script type="text/javascript" src=${shop}/js/map.js></script>
       <script type="text/javascript" src=${shop}/js/easyui.js></script>
 
+<#--      <!-- sweetAlert &ndash;&gt;-->
+<#--      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
+
+<#--      <!-- animate 动画效果css&ndash;&gt;-->
+<#--      <script src="https://unpkg.com/animate.css@3.5.2/animate.min.css"></script>-->
+
+
+<#--      <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+
 
