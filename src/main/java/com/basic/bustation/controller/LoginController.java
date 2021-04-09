@@ -19,7 +19,8 @@ public class LoginController extends BaseController{
     public String login(@RequestParam("userAccount") String username, @RequestParam("userPassword") String password,Map<String,Object> map, HttpSession session){
 
         //验证用户名和密码，输入正确，跳转到dashboard
-        if(!StringUtils.isEmpty(username)&&"123456".equals(password)){
+//        if(!StringUtils.isEmpty(username)&&"123456".equals(password)){
+        if(loginDAO.getCount(username,password)!=0){
 
             session.setAttribute("userName",username);
             System.out.println("----" + username);
@@ -35,16 +36,6 @@ public class LoginController extends BaseController{
 //            map.put("msg","用户名密码错误");
             return "login";
         }
-    }
-
-
-    @RequestMapping("dashboard")
-    public String goMain(Map<String,Object> map)
-    {
-        map.put("name","zhangfang");
-        map.put("age",28);
-        map.put("sex","女");
-        return "dashboard";
     }
 }
 

@@ -20,7 +20,7 @@ import java.util.List;
  * transactions. Each of these methods provides additional information for how
  * to configure it for the desired type of transaction control.
  * 
- * @see com.bus.model.Linestation
+ * @see com.basic.model.Linestation
  * @author MyEclipse Persistence Tools
  */
 

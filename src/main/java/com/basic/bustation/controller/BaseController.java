@@ -39,6 +39,8 @@ public class BaseController {
     @Autowired
     protected StationtolineDAO stationtolineDAO;
     @Autowired
+    protected LoginDAO loginDAO;
+    @Autowired
     protected BusSearchUtil busSearchUtil;
     @Autowired
     protected GeomUtil geomUtil;

@@ -27,10 +27,10 @@
     <div>
         <div>
 
-            <h1 class="logo-name">Spring</h1>
+            <h1 class="logo-name">城市交通线路查询系统</h1>
 
         </div>
-        <h3>欢迎使用 SpringBoot</h3>
+        <h3>欢迎使用城市交通线路查询系统</h3>
 
         <div class="form-group">
             <input type="text" id="userAccount" class="form-control" placeholder="用户名" required="">
