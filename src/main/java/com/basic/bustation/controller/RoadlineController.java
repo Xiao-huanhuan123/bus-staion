@@ -119,8 +119,8 @@ public class RoadlineController extends BaseController{
     @ResponseBody
     public String save(Roadline model, @RequestParam String startTime1, @RequestParam
                             String endTime2) throws ParseException, java.text.ParseException {
-        model.setRoadstationByEndid(roadstationDAO.findById(Long.valueOf(9)));
-        model.setRoadstationByStartid(roadstationDAO.findById(Long.valueOf(9)));
+        model.setRoadstationByEndid((Roadstation)roadstationDAO.findByName("未添加站点").get(0));
+        model.setRoadstationByStartid((Roadstation)roadstationDAO.findByName("未添加站点").get(0));
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         model.setStartTime(new Time(sdf.parse(startTime1).getTime()));

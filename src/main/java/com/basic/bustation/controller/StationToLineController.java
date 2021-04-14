@@ -26,6 +26,7 @@ public class StationToLineController extends BaseController{
         System.out.println("hello");
         Roadline roadline = roadlineDAO.findById(id);
         roadlineDAO.delete(roadline);
+        roadstationDAO.save(new Roadstation(9L,"未添加站点","站点",Double.valueOf(0),Double.valueOf(0),Double.valueOf(2)));
         map.put("success",true);
         return gson.toJson(map);
     }

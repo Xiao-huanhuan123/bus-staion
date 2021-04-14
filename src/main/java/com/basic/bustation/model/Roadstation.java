@@ -17,6 +17,7 @@ public class Roadstation implements java.io.Serializable {
 	private Double latitude;
 	private Double staytime;
 
+
 	// Constructors
 
 	/** default constructor */
@@ -32,6 +33,17 @@ public class Roadstation implements java.io.Serializable {
 		this.latitude = latitude;
 		this.staytime=staytime;
 	}
+
+	public Roadstation(Long id, String name, String demo, Double longitude, Double latitude, Double staytime) {
+		this.id = id;
+		this.name = name;
+		this.demo = demo;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.staytime = staytime;
+	}
+
+
 
 	/** full constructor */
 	public Roadstation(String name, String demo, Double longitude,
