@@ -14,7 +14,7 @@ import java.util.Map;
 public class LoginController extends BaseController{
 
 
-    @RequestMapping(value="/v1/login")
+    @RequestMapping(value="/v1/login",produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String login(@RequestParam("userAccount") String username, @RequestParam("userPassword") String password,Map<String,Object> map, HttpSession session){
 
@@ -33,8 +33,9 @@ public class LoginController extends BaseController{
         else  //输入错误，清空session，提示用户名密码错误
         {
             session.invalidate();
+            map.put("success",false);
 //            map.put("msg","用户名密码错误");
-            return "login";
+            return gson.toJson(map);
         }
     }
 }

@@ -87,6 +87,11 @@
 					<li><a title="send_bussearch_search.action">公交线路基于最短路径的算法</a></li>
 				</ul>
 			</div>
+			<div title="对系统的建议" >
+				<ul>
+					<li><a title="send_comments_words.action">留言</a></li>
+				</ul>
+			</div>
 		</div>
 	</div>
 

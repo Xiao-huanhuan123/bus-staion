@@ -30,7 +30,7 @@
             <h1 class="logo-name">城市交通线路查询系统</h1>
 
         </div>
-        <h3>欢迎使用城市交通线路查询系统</h3>
+<#--        <h3>欢迎使用城市交通线路查询系统</h3>-->
 
         <div class="form-group">
             <input type="text" id="userAccount" class="form-control" placeholder="用户名" required="">
@@ -60,34 +60,57 @@
         if (userPassword == "") {
             return false;
         }
-        // 登录
-        $.ajax({
-            url: "/v1/login",
-            type: "post",
-            data: {
-                userAccount: userAccount,
-                userPassword: userPassword
-            },
-            success: function (data) {
-                if (data.success) {
-                    // 成功
-                    swal({
-                        title: "登录成功",
-                        timer: 1000,
-                        type: "success",
-                        showConfirmButton: false
-                    });
-                } else {
-                    // 失败
-                    swal({
-                        title: data.msg,
-                        timer: 1000,
-                        type: "error",
-                        showConfirmButton: false
-                    });
-                }
+        ajax("/v1/login",{userAccount:userAccount,userPassword:userPassword},"post",onsuccess);
+        function onsuccess(data) {
+            if (data.success) {
+                            // 成功
+                swal({
+                    title: "登录成功",
+                    text: "用户名和密码输入正确",
+                    timer: 2000,
+                    icon: "success",
+                    type: "success",
+                    showConfirmButton: false
+                });
+            } else {
+                // 失败
+                swal({
+                    title: "登录失败",
+                    timer: 2000,
+                    type: "error",
+                    showConfirmButton: false
+                });
             }
-        });
+        }
+
+        // 登录
+        // $.ajax({
+        //     url: "/v1/login",
+        //     type: "post",
+        //     data: {
+        //         userAccount: userAccount,
+        //         userPassword: userPassword
+        //     },
+        //     success: function (data) {
+        //         if (data.status=="success") {
+        //             // 成功
+        //             swal({
+        //                 title: "登录成功",
+        //                 timer: 1000,
+        //                 type: "success",
+        //                 showConfirmButton: false
+        //             });
+        //         } else {
+        //             // 失败
+        //             swal({
+        //                 title: data.msg,
+        //                 timer: 1000,
+        //                 type: "error",
+        //                 showConfirmButton: false
+        //             });
+        //         }
+        //     }
+        // });
     }
 
 </script>

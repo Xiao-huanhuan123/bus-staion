@@ -32,6 +32,7 @@
                 <value>classpath:hibernateconf/Roadstation.hbm.xml</value>
                 <value>classpath:hibernateconf/Stationtoline.hbm.xml</value>
                 <value>classpath:hibernateconf/Admin.hbm.xml</value>
+                <value>classpath:hibernateconf/Word.hbm.xml</value>
             </list>
         </property>
 

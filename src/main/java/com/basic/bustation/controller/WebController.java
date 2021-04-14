@@ -39,6 +39,11 @@ public class WebController extends  BaseController{
         return "temp";
     }
 
+    @RequestMapping(value = "/words",produces = "text/html;charset=UTF-8")
+    public String words(){
+        return "words";
+    }
+
     @RequestMapping(value = "/login",produces = "text/html;charset=UTF-8")
     public String goLogin(){
         return "login";

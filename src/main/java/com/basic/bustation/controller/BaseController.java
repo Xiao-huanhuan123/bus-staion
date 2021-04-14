@@ -41,6 +41,8 @@ public class BaseController {
     @Autowired
     protected LoginDAO loginDAO;
     @Autowired
+    protected WordDAO wordDAO;
+    @Autowired
     protected BusSearchUtil busSearchUtil;
     @Autowired
     protected GeomUtil geomUtil;
