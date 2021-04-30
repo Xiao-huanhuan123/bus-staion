@@ -200,7 +200,7 @@ function addMarksMap(map,points,markers,contents){
     }
 }
 
-/* 添加站点信息s到坐标上去
+/* 添加站点信息s到坐标上去(整个data的）
  * makrer 将标注信息存起来
  * points 将点得信息存起来
  * color 线路的颜色
@@ -221,6 +221,28 @@ function addRoadStationsMap(map,data,markers,points,color){
      *  添加道路弧线
      */
  //   addCurveLineMap(map,points,color,3,0.5);
+}
+
+
+/* 添加站点信息s到坐标上去(单个的）
+ * makrer 将标注信息存起来
+ * points 将点得信息存起来
+ * color 线路的颜色
+ */
+function addRoadStationOnMap(map,roadstation){
+    // map.clearOverlays();
+        var point=new BMap.Point(roadstation.longitude,roadstation.latitude);
+        var marker = new BMap.Marker(point);  // 创建标注
+        // markers.push(marker);
+        // points.push(point);
+        var content =roadstation.name+' 备注:'+roadstation.demo+' 等待时间:'+roadstation.staytime+'分钟';
+        map.addOverlay(marker);               // 将标注添加到地图中
+        addClickHandler(map,content,marker);	//为标注添加监听事件
+
+    /*
+     *  添加道路弧线
+     */
+    //   addCurveLineMap(map,points,color,3,0.5);
 }
 
 //添加道路线路到地图上
@@ -249,6 +271,37 @@ function getRoadLineListMap(map,data){
     //点类的聚合，百度地图接口
     //最简单的用法，生成一个marker数组，然后调用markerClusterer类即可。
     var markerClusterer = markerClustererMap(map,markers);
+};
+
+//添加道路线路到地图上（新版）
+function getRoadLineListMapNew(map,data){
+    map.clearOverlays();
+    var markers=new Array();  		//用来收集所有的标记
+    var color=["#ff3333","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
+
+    for(var i=0;i<data.rows.length;i++)
+    {
+        var road=data.rows[i];
+
+        if(road.linestations[0]!=null)
+        {
+            var point = new BMap.Point(road.linestations[0].roadstation.longitude,
+                road.linestations[0].roadstation.latitude);
+            //在地图上添加label标签
+            var text = road.name + ' 开车时间:' + road.startTime + ' 结束时间' + road.endTime;
+            addlabelonMap(map, point, text, color[i]);
+            // var points = new Array();
+            // addRoadStationsMap(map, road.linestations, markers, points, color[i]);
+            addRoadlineStringMap(map, data.linestring[i], color[i]);   //添加道路线路string到地图上
+        }
+    }
+    // var points = new Array();
+    addRoadStationOnMap(map, data.startStation);
+    addRoadStationOnMap(map, data.endStation);
+
+    //点类的聚合，百度地图接口
+    //最简单的用法，生成一个marker数组，然后调用markerClusterer类即可。
+    // var markerClusterer = markerClustererMap(map,markers);
 };
 
 

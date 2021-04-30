@@ -43,7 +43,11 @@
 			 	alert(data.result);
 				     	switch(data.type){
 					     	case 1:
-								getRoadLineListMap(map,data);		//将放的可行的直达路径显示到地图上
+								getRoadLineListMapNew(map,data);		//将放的可行的直达路径显示到地图上
+								var point = new BMap.Point(data.startStation.longitude,data.startStation.latitude);
+								addlabelonMap(map,point,"起点","green"); //将label标签显示到地图上
+								var point = new BMap.Point(data.endStation.longitude,data.endStation.latitude);
+								addlabelonMap(map,point,"终点","green"); //将label标签显示到地图上
 								var point = new BMap.Point(113.3926,22.51595);
 								addlabelonMap(map,point,data.label,"red"); //将label标签显示到地图上
 
@@ -66,7 +70,11 @@
 								// setTimeout('start(map,pl)',3000);
 					     		break;
 					     	case 2:
-					     		getRoadLineListMap(map,data);		//将放的可行的直达路径显示到地图上
+					     		getRoadLineListMapNew(map,data);		//将放的可行的直达路径显示到地图上
+								var point = new BMap.Point(data.startStation.longitude,data.startStation.latitude);
+								addlabelonMap(map,point,"起点","green"); //将label标签显示到地图上
+								var point = new BMap.Point(data.endStation.longitude,data.endStation.latitude);
+								addlabelonMap(map,point,"终点","green"); //将label标签显示到地图上
 					     		var point = new BMap.Point(113.3926,22.51595);
 					     		addlabelonMap(map,point,data.label,"red"); //将label标签显示到地图上
 					     		
