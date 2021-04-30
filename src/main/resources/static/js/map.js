@@ -206,6 +206,7 @@ function addMarksMap(map,points,markers,contents){
  * color 线路的颜色
  */
 function addRoadStationsMap(map,data,markers,points,color){
+    // map.clearOverlays();
     for(var j=0;j<data.length;j++){
         var point=new BMap.Point(data[j].roadstation.longitude,data[j].roadstation.latitude);
         var marker = new BMap.Marker(point);  // 创建标注
@@ -226,7 +227,7 @@ function addRoadStationsMap(map,data,markers,points,color){
 function getRoadLineListMap(map,data){
     map.clearOverlays();
     var markers=new Array();  		//用来收集所有的标记
-    var color=["red","blue","black","#EEEE00","black"];
+    var color=["#ff3333","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
 
     for(var i=0;i<data.rows.length;i++)
     {
@@ -238,7 +239,7 @@ function getRoadLineListMap(map,data){
                                        road.linestations[0].roadstation.latitude);
             //在地图上添加label标签
             var text = road.name + ' 开车时间:' + road.startTime + ' 结束时间' + road.endTime;
-            addlabelonMap(map, point, text, "red");
+            addlabelonMap(map, point, text, color[i]);
             var points = new Array();
             addRoadStationsMap(map, road.linestations, markers, points, color[i]);
             addRoadlineStringMap(map, data.linestring[i], color[i]);   //添加道路线路string到地图上
@@ -255,7 +256,7 @@ function getRoadLineListMap(map,data){
 function getRoadLineListMapWithOutStations(map,data){
     map.clearOverlays();
     //var markers=new Array();  		//用来收集所有的标记
-    var color=["red","blue","black","#EEEE00","black"];
+    var color=["#ff3333","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
 
     for(var i=0;i<data.rows.length;i++){
         var road=data.rows[i];
@@ -264,7 +265,7 @@ function getRoadLineListMapWithOutStations(map,data){
             var point = new BMap.Point(road.linestations[0].roadstation.longitude, road.linestations[0].roadstation.latitude);
             //在地图上添加label标签
             var text = road.name + ' 开车时间:' + road.startTime + ' 结束时间' + road.endTime;
-            addlabelonMap(map, point, text, "red");
+            addlabelonMap(map, point, text, color[i]);
             var points = new Array();
             //addRoadStationsMap(map, road.linestations, markers, points, color[i]);
             addRoadlineStringMap(map, data.linestring[i], color[i]);   //添加道路线路string到地图上

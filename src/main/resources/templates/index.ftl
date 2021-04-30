@@ -63,6 +63,10 @@
 		});
 		
 	</script>
+
+		<#--	  使点类聚合-->
+	  <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
+	  <script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
 	
   </head>
   
@@ -83,6 +87,7 @@
 			</div>
 			<div title="换乘操作" >
 				<ul>
+					<li><a title="send_bussearch_lineSearch.action">线路——站点搜索</a></li>
 					<li><a title="send_road_bussearch.action">公交换乘算法</a></li>
 					<li><a title="send_bussearch_search.action">公交线路基于最短路径的算法</a></li>
 				</ul>
@@ -104,6 +109,12 @@
 			</div>
 		</div>
 		</div>
+
+	</div>
+
+<#--	<div data-options="region:'east',title:'文字描述'" style="width:250px;"></div>-->
+
+
 
 	</div>
 	
