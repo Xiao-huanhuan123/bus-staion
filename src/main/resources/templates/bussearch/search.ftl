@@ -4,6 +4,9 @@
 <html>
   <head>
     <title>公交车管理系统</title>
+      <!-- sweetAlert -->
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script type="text/javascript">
     $(function(){
 		var map = new BMap.Map("container");
@@ -21,7 +24,7 @@
         var curve;    //弧线信息
         var markerClusterer;    //点类聚合
 
-        var pointLabel = new BMap.Point(113.3926,22.51595); //用来显示信息
+        var pointLabel = new BMap.Point(113.276681,22.65264); //用来显示信息
 
 			$("input[id=startaddress]").validatebox({
 				required : true,
@@ -97,6 +100,8 @@
                         }
                         str+=roadstation.name+"经过";
                 }
+                    // var changestation=data.changeLine[0];
+					// str += "换乘点为：" + changestation.name;
                     //调用库函数
                     addMarksMap(map,points,markers,contents);
                     markers[0].setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
@@ -109,6 +114,13 @@
                     }
 
                     showInfoMessage(str);
+                    swal({
+                        title: "查询成功",
+                        text: str,
+                        icon: "success",
+                        type: "success",
+                        showConfirmButton: false
+                    });
                    // $("#info").append("<p>"+str+"</p>");
                     InfoLabe=addlabelonMap(map,pointLabel,str,"red"); //将label标签显示到地图上
 
