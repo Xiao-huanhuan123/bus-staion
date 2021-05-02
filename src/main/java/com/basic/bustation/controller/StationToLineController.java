@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,8 +26,14 @@ public class StationToLineController extends BaseController{
         Map<String,Object> map=new HashMap<>();
         System.out.println("hello");
         Roadline roadline = roadlineDAO.findById(id);
+        List<Stationtoline> stationtolineList = stationtolineDAO.findByProperty("roadline",roadline);
+        for(Stationtoline stationtoline:stationtolineList){
+//            stationtolineDAO.delete(stationtoline);
+//            Roadstation roadstation = roadstationDAO.findById(stationtoline.getRoadstation().getId());
+//            roadstationDAO.delete(roadstation);
+        }
         roadlineDAO.delete(roadline);
-        roadstationDAO.save(new Roadstation(9L,"未添加站点","站点",Double.valueOf(0),Double.valueOf(0),Double.valueOf(2)));
+//        roadstationDAO.save(new Roadstation(9L,"未添加站点","站点",Double.valueOf(0),Double.valueOf(0),Double.valueOf(2)));
         map.put("success",true);
         return gson.toJson(map);
     }

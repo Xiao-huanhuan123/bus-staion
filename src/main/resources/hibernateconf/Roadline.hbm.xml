@@ -10,12 +10,12 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="roadstationByEndid" class="com.basic.bustation.model.Roadstation" fetch="select" lazy="false" cascade="all">
+        <many-to-one name="roadstationByEndid" class="com.basic.bustation.model.Roadstation" fetch="select" lazy="false">
             <column name="endid">
                 <comment>终点</comment>
             </column>
         </many-to-one>
-        <many-to-one name="roadstationByStartid" class="com.basic.bustation.model.Roadstation" fetch="select" lazy="false" cascade="all">
+        <many-to-one name="roadstationByStartid" class="com.basic.bustation.model.Roadstation" fetch="select" lazy="false">
             <column name="startid">
                 <comment>起点</comment>
             </column>
@@ -34,7 +34,7 @@
         <property name="line" type="org.hibernate.spatial.GeometryType">
             <column name="line" />
         </property>
-        <list name="linestations" inverse="true" lazy="false" cascade="all-delete-orphan">
+        <list name="linestations" inverse="true" lazy="false" cascade="all">
             <key>
                 <column name="lineid" not-null="true">
                     <comment>公交线路id</comment>
@@ -43,7 +43,7 @@
             <index column="sn"></index>
             <one-to-many class="com.basic.bustation.model.Linestation"/>
         </list>
-        <list name="stationtolines" inverse="true" lazy="false" cascade="all-delete-orphan">
+        <list name="stationtolines" inverse="true" lazy="false" cascade="all">
             <key>
                 <column name="lineid" not-null="true">
                     <comment>线路id</comment>

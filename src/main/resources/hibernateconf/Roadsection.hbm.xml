@@ -10,12 +10,12 @@
             <column name="id" />
             <generator class="native" />
         </id>
-        <many-to-one name="roadstationByEndid" class="com.basic.bustation.model.Roadstation" fetch="select" cascade="all">
+        <many-to-one name="roadstationByEndid" class="com.basic.bustation.model.Roadstation" fetch="select">
             <column name="endid" not-null="true">
                 <comment>公交线路段终点</comment>
             </column>
         </many-to-one>
-        <many-to-one name="roadstationByStartid" class="com.basic.bustation.model.Roadstation" fetch="select" cascade="all">
+        <many-to-one name="roadstationByStartid" class="com.basic.bustation.model.Roadstation" fetch="select">
             <column name="startid" not-null="true">
                 <comment>公交线路段起点</comment>
             </column>
