@@ -118,7 +118,7 @@ public class RoadlineController extends BaseController{
             produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String save(Roadline model, @RequestParam String startTime1, @RequestParam
-                            String endTime2) throws ParseException, java.text.ParseException {
+            String endTime2) throws ParseException, java.text.ParseException {
         model.setRoadstationByEndid((Roadstation)roadstationDAO.findByName("未添加站点").get(0));
         model.setRoadstationByStartid((Roadstation)roadstationDAO.findByName("未添加站点").get(0));
 
@@ -220,6 +220,9 @@ public class RoadlineController extends BaseController{
             return gson.toJson(pageMap);
         }
 
+        pageMap.put("startStation",startstation);
+        pageMap.put("endStation",endstation);
+
         List<Stationtoline> startLineList=stationtolineDAO.findBystation(startstation);
         List<Stationtoline> endLineList=stationtolineDAO.findBystation(endstation);
 
@@ -254,16 +257,22 @@ public class RoadlineController extends BaseController{
             }
 
         if(roadline.size()!=0){
+            StringBuilder sb = new StringBuilder();
+            sb.append("从").append(startstation.getName()).append("直达").append(endstation.getName()).append("共有").append(roadline.size()).append("条乘车线路可选:").append("<br>");
+            for(Roadline r:roadline){
+                sb.append(r.getName()).append("<br>");
+            }
+            pageMap.put("info",sb.toString());
             pageMap.put("result", "这里有"+roadline.size()+"条可选路径");
             pageMap.put("rows", roadline);
             pageMap.put("linestring",roadUtil.getLineStringPointsFromRoadList(roadline));
-            String label="从"+startaddress+"乘坐";
+            String label= "从" + startstation.getName() + "乘坐";
             for(int i=0;i<roadline.size();i++){
                 label+=roadline.get(i).getName();
                 if(i!=roadline.size()-1)
                     label+="或";
             }
-            label+="直达"+endaddress;
+            label += "直达" + endstation.getName();
             pageMap.put("label", label);
             pageMap.put("type", 1);
             return gson.toJson(pageMap);
@@ -298,6 +307,7 @@ public class RoadlineController extends BaseController{
                                 m_bool=false;
                             }
                             if(m_bool){
+                                //记录换乘前后的线路
                                 Map<String,Linestation> linestation=new HashMap<>();
                                 linestation.put("start", u);
                                 linestation.put("end", j);
@@ -312,7 +322,9 @@ public class RoadlineController extends BaseController{
             //收集所有的换乘点信息
             List<Roadstation> stationList=new ArrayList<>();
             String label="";
-
+            StringBuilder sb = new StringBuilder();
+            sb.append("从").append(startstation.getName()).append("到").append(endstation.getName()).append("共有").append(linestationresult
+                    .size()).append("种换乘方案：<br>");
             for(int j=0;j<linestationresult.size();j++){
                 //添加查询结果的所有交通信息
                 Linestation tempstart=linestationresult.get(j).get("start");
@@ -321,9 +333,12 @@ public class RoadlineController extends BaseController{
                 roadlineList.add(tempend.getRoadline());
                 //添加查询结果的换乘点信息
                 stationList.add(tempstart.getRoadstation());
-                label+=(j+1)+ "、从"+startaddress+"乘坐";
+                sb.append(j + 1).append("、从").append(startstation.getName()).append("乘坐").append(tempstart.getRoadline().getName())
+                        .append("到").append(tempstart.getRoadstation().getName()).append("换乘").append(tempend.getRoadline().getName())
+                        .append("到").append(endstation.getName()).append("<br>");
+                label+=(j+1)+ "、从"+startstation.getName()+"乘坐";
                 label+=tempstart.getRoadline().getName()+"到"+tempstart.getRoadstation().getName()+"换乘"+tempend.getRoadline().getName();
-                label+="直达"+endaddress+"\n";
+                label+="到达"+endstation.getName()+"\n";
                 if(j!=linestationresult.size()-1)
                     label+="或";
             }
@@ -334,6 +349,7 @@ public class RoadlineController extends BaseController{
             pageMap.put("changestation", stationList);
             //添加路线标签信息
             pageMap.put("label", label);
+            pageMap.put("info",sb.toString());
             //添加result信息
             pageMap.put("result", "这里有"+linestationresult.size()+"条可选路径");
             pageMap.put("type", 2);

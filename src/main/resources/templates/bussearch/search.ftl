@@ -100,6 +100,9 @@
                         }
                         str+=roadstation.name+"经过";
                 }
+					var length = data.changeStation.length;
+					var html = data.html;
+                    document.getElementById('message').innerHTML = html;
                     // var changestation=data.changeLine[0];
 					// str += "换乘点为：" + changestation.name;
                     //调用库函数
@@ -113,7 +116,7 @@
                         str+="最短路径得出,共"+data.weight+"米";
                     }
 
-                    showInfoMessage(str);
+                    // showInfoMessage(str);
                     swal({
                         title: "查询成功",
                         text: str,
@@ -146,9 +149,9 @@
 		 <a id="search"  href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">搜索</a>
         <a id="clear"  href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">清空</a>
 	</div>
-    <div id="info"></div>
  	<div id="container"
 			style=" width: 100%; height: 100%;">
 	</div>
+    <div id="message"></div>
 </body>
 </html>

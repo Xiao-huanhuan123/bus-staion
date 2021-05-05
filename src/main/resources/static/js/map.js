@@ -249,8 +249,8 @@ function addRoadStationOnMap(map,roadstation){
 function getRoadLineListMap(map,data){
     map.clearOverlays();
     var markers=new Array();  		//用来收集所有的标记
-    var color=["#ff3333","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
-
+    // var color=["#ff3333","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
+    var color=["#ff3333","#ff3399","#ff33ff","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
     for(var i=0;i<data.rows.length;i++)
     {
         var road=data.rows[i];
@@ -277,8 +277,8 @@ function getRoadLineListMap(map,data){
 function getRoadLineListMapNew(map,data){
     map.clearOverlays();
     var markers=new Array();  		//用来收集所有的标记
-    var color=["#ff3333","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
-
+    // var color=["#ff3333","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
+    var color=["#ff3333","#ff3399","#ff33ff","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
     for(var i=0;i<data.rows.length;i++)
     {
         var road=data.rows[i];
@@ -304,18 +304,49 @@ function getRoadLineListMapNew(map,data){
     // var markerClusterer = markerClustererMap(map,markers);
 };
 
+//添加道路线路到地图上（新版）
+function getRoadLineListMapForRoadstation(map,data){
+    map.clearOverlays();
+    var markers=new Array();  		//用来收集所有的标记
+    var color=["#ff3333","#ff3399","#ff33ff","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
+
+    for(var i=0;i<data.rows.length;i++)
+    {
+        var road=data.rows[i];
+
+        if(road.linestations[0]!=null)
+        {
+            var point = new BMap.Point(road.linestations[0].roadstation.longitude,
+                road.linestations[0].roadstation.latitude);
+            //在地图上添加label标签
+            var text = road.name + ' 开车时间:' + road.startTime + ' 结束时间' + road.endTime;
+            addlabelonMap(map, point, text, color[i]);
+            // var points = new Array();
+            // addRoadStationsMap(map, road.linestations, markers, points, color[i]);
+            addRoadlineStringMap(map, data.linestring[i], color[i]);   //添加道路线路string到地图上
+        }
+    }
+
+    //点类的聚合，百度地图接口
+    //最简单的用法，生成一个marker数组，然后调用markerClusterer类即可。
+    // var markerClusterer = markerClustererMap(map,markers);
+};
+
+
 
 //添加道路线路(没有站台信息的道路线路用来检索用)到地图上
 function getRoadLineListMapWithOutStations(map,data){
     map.clearOverlays();
     //var markers=new Array();  		//用来收集所有的标记
-    var color=["#ff3333","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
-
+    // var color=["#ff3333","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
+    // var color=['#ff0000','#eb4310','#f6941d','#fbb417','#cdd541','#99cc33','#3f9337','#219167','#239676','#24998d','#1f9baa','#0080ff','#3366cc','#333399','#003366','#800080','#a1488e','#c71585','#bd2158'];
+    var color=["#ff3333","#ff3399","#ff33ff","#ff9933","#ffff33","#99ff33","#33ff33","#33ff99","#33ffff","#3399ff","#3333ff"];
     for(var i=0;i<data.rows.length;i++){
         var road=data.rows[i];
         if(road.linestations[0]!=null)
         {
-            var point = new BMap.Point(road.linestations[0].roadstation.longitude, road.linestations[0].roadstation.latitude);
+            //防止使用同一个点导致文本覆盖
+            var point = new BMap.Point(road.linestations[0].roadstation.longitude-0.0005, road.linestations[0].roadstation.latitude);
             //在地图上添加label标签
             var text = road.name + ' 开车时间:' + road.startTime + ' 结束时间' + road.endTime;
             addlabelonMap(map, point, text, color[i]);

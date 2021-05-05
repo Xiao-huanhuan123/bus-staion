@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<#--<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">-->
+<#--<!DOCTYPE html>-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <#include "../public/head.ftl">
 <html>
   <head>
@@ -40,6 +40,8 @@
 			});
 			
 			function onsuccess(data){
+				var html = data.info;
+				document.getElementById('info').innerHTML = html;
 			 	alert(data.result);
 				     	switch(data.type){
 					     	case 1:
@@ -50,7 +52,6 @@
 								addlabelonMap(map,point,"终点","green"); //将label标签显示到地图上
 								var point = new BMap.Point(113.3926,22.51595);
 								addlabelonMap(map,point,data.label,"red"); //将label标签显示到地图上
-
 								// var map = new BMapGL.Map("allmap");
 								// map.centerAndZoom(new BMapGL.Point(113.3926,22.51595), 17);
 								// map.enableScrollWheelZoom(true);
@@ -75,11 +76,12 @@
 								addlabelonMap(map,point,"起点","green"); //将label标签显示到地图上
 								var point = new BMap.Point(data.endStation.longitude,data.endStation.latitude);
 								addlabelonMap(map,point,"终点","green"); //将label标签显示到地图上
-					     		var point = new BMap.Point(113.3926,22.51595);
+					     		var point = new BMap.Point(113.3926,22.51795);
 					     		addlabelonMap(map,point,data.label,"red"); //将label标签显示到地图上
 					     		
 					     		for(var a=0;a<data.changestation.length;a++){
-					     			var point = new BMap.Point(data.changestation[a].longitude,data.changestation[a].latitude);
+					     			//防止使用同一个点导致文本覆盖
+					     			var point = new BMap.Point(data.changestation[a].longitude,data.changestation[a].latitude-0.0005);
 					     			addlabelonMap(map,point,"换乘点","blue"); //将label标签显示到地图上
 					     		}
 					     		break;
@@ -102,11 +104,14 @@
     </script>
   </head>
 <body>
-	输入起始地址: <input type="text" id="startaddress">
-	输入结束地址: <input type="text" id="endaddress">    
-	 <a id="search"  href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">搜索</a>  
+<div style="left:20px;top:20px;">
+	输入起始地址: <input type="text" id="startaddress" >
+	输入结束地址: <input type="text" id="endaddress">
+	<a id="search"  href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">搜索</a>
+</div>
+<div id="info"></div>
  	<div id="container"
-			style="position: absolute;  width: 100%; height: 90%; overflow:hidden;">
+			style="position: absolute;  width: 100%; height: 100%; overflow:hidden;">
 	</div>
 </body>
 </html>

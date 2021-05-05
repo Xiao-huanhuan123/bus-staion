@@ -24,8 +24,9 @@
       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=fQaZ0KHrLQq5GZtdxoRtCRYl"></script>
 <#--      <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=0H6GksIDHe0UUNhxTyhI0flCVG2uUu0w"></script>-->
       <script type="text/javascript" src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=fQaZ0KHrLQq5GZtdxoRtCRYl"></script>
-      <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>
-      <script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>
+        <#--   点类聚合   -->
+<#--      <script type="text/javascript" src="http://api.map.baidu.com/library/TextIconOverlay/1.2/src/TextIconOverlay_min.js"></script>-->
+<#--      <script type="text/javascript" src="http://api.map.baidu.com/library/MarkerClusterer/1.2/src/MarkerClusterer_min.js"></script>-->
       <script type="text/javascript" src="http://api.map.baidu.com/library/CurveLine/1.5/src/CurveLine.min.js"></script>
       <#--百度地图鼠标测距功能-->
       <script type="text/javascript" src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"></script>
